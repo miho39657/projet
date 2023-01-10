@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import CompC from "./comp.js";
+import CompR from "./compR.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state = {type : ""};
+  }
+  fct = (data) => {
+    this.setState({type : data})
+  }
+  render(){
+    const l = [
+      {nom : "pomme", type: "fruit"},
+      {nom : "banane", type: "fruit"},
+      {nom : "kiwi", type: "fruit"},
+      {nom : "orange", type: "fruit"},
+      {nom : "tomate", type: "legume"},
+      {nom : "carotte", type: "legume"},
+      {nom : "pomme de terre", type: "legume"},
+      {nom : "poivron", type: "legume"},
+      {nom : "navet", type: "legume"},
+    ];
+    return (
+      <>
+      <h1>Composant App</h1>
+      <CompC fct = {this.fct}/>
+      <CompR elem = {l.filter(e => e.type == this.state.type)}/>
+      </>
+    )
+  }
+
 }
 
 export default App;
